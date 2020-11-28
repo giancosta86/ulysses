@@ -36,7 +36,7 @@ Ulysses takes its input data from a minimalist log of didactic entries - usually
 
 This is the expected line format:
 
-> **\<completion date>**: [**"\<title between double quotes>"**] [**\<url not between double quotes>**] **#\<learning time>**
+> **\<completion date>**: [**"\<title between double quotes>"**] [**\<url not between double quotes>**] **\#\<learning time>**
 
 where:
 
@@ -50,9 +50,9 @@ where:
 
 - **url** is _optional_ but recommended: if the URL belongs to a supported didactic provider, it is used to fetch missing information such as the title and the learning time. It must _not_ be enclosed in quotes
 
-- **learning time** is optional but, if declared, must be prefixed by a **#** symbol. Its overall format is:
+- **learning time** is optional but, if declared, must be prefixed by a **\#** symbol. Its overall format is:
 
-  > #\<hours>h\<minutes>
+  > \#\<hours>h\<minutes>
 
   where **hours** and **minutes** are **mandatory**, arbitrary numbers (even 0), separated by the letter **h**
 
