@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/ulysses",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simplified generation of OmniCourse descriptors",
   "bin": {
     "ulysses": "bin/ulysses.js"
@@ -11,7 +11,8 @@
     "start": "cross-env DEBUG=server,server:* NODE_ENV=development ts-node src/bin/ulysses.ts",
     "test": "jest",
     "build": "yarn test && tsc && copy-files-from-to && cd dist && yarn pack && cd ..",
-    "rebuild": "yarn clean && yarn build"
+    "rebuild": "yarn clean && yarn build",
+    "deploy": "yarn publish --non-interactive dist/giancosta86-*.tgz"
   },
   "copyFiles": [
     {
