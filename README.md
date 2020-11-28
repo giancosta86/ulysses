@@ -2,7 +2,7 @@
 
 _Simplified generation of OmniCourse descriptors_
 
-![Main screen](https://github.com/giancosta86/ulysses/blob/main/screenshots/main.png)
+![Main screen](screenshots/main.png)
 
 **Ulysses** is a web application - packaged as a standalone command - dedicated to the simplified generation of [OmniCourse](https://github.com/giancosta86/OmniCourse) descriptors.
 
