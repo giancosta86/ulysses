@@ -1,0 +1,33 @@
+{
+  "name": "@giancosta86/ulysses-workspaces",
+  "private": true,
+  "description": "Global project for Ulysses",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "frontend": "yarn workspace @giancosta86/ulysses-frontend",
+    "backend": "yarn workspace @giancosta86/ulysses",
+    "clean-dependencies": "yarn frontend clean-dependencies && yarn backend clean-dependencies && rimraf node_modules",
+    "clean": "yarn frontend clean && yarn backend clean",
+    "start": "concurrently 'yarn frontend start' 'yarn backend start'",
+    "test": "yarn frontend test && yarn backend test",
+    "build": "yarn frontend build && yarn backend build",
+    "rebuild": "yarn clean && yarn build",
+    "start-prod": "node packages/backend/dist/bin/ulysses.js"
+  },
+  "author": {
+    "name": "Gianluca Costa",
+    "url": "https://gianlucacosta.info/",
+    "email": "gianluca@gianlucacosta.info"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giancosta86/ulysses.git"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "prettier": "^2.1.2"
+  }
+}

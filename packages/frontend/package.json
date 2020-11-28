@@ -1,0 +1,54 @@
+{
+  "name": "@giancosta86/ulysses-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend project",
+  "scripts": {
+    "clean-dependencies": "rimraf node_modules",
+    "clean": "rimraf ../backend/dist/public",
+    "start": "webpack serve --config=webpack.dev.js",
+    "test": "echo 'No frontend tests created for now'",
+    "build": "yarn test && webpack --config=webpack.prod.js",
+    "rebuild": "yarn clean && yarn build"
+  },
+  "author": {
+    "name": "Gianluca Costa",
+    "url": "https://gianlucacosta.info/",
+    "email": "gianluca@gianlucacosta.info"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giancosta86/ulysses.git"
+  },
+  "dependencies": {
+    "comlink": "^4.3.0",
+    "optional-typescript": "^1.4.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "socket.io-client": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.7",
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^17.0.0",
+    "@types/socket.io-client": "^1.4.34",
+    "clean-webpack-plugin": "^3.0.0",
+    "comlink-loader": "^2.0.0",
+    "crossenv": "^0.0.2-security",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.0",
+    "rimraf": "^3.0.2",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.11",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typescript": "^4.0.5",
+    "webpack": "^5.6.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.4.0",
+    "worker-plugin": "^5.0.0"
+  }
+}

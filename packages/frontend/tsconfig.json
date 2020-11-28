@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig-base.json",
+
+  "compilerOptions": {
+    "module": "es6",
+    "jsx": "react",
+
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@BackendModel/*": ["../backend/src/model/shared/*"],
+      "@BackendServer/*": ["../backend/src/server/shared/*"]
+    }
+  }
+}

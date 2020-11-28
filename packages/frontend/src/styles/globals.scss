@@ -1,0 +1,91 @@
+@import "reset.css";
+
+.main {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 1em;
+}
+
+.logo {
+  width: 4em;
+  height: 4em;
+  margin-bottom: 1em;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+@mixin editor-box {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  padding: 2em;
+  padding-top: 1em;
+  padding-bottom: 1.5em;
+  width: 80%;
+  border-radius: 1em;
+  border: 1px solid gray;
+
+  p {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+  }
+
+  textarea {
+    width: 1em;
+    width: 100%;
+    height: 15em;
+    resize: none;
+    font-size: 1.1em;
+  }
+}
+
+.input-box {
+  @include editor-box();
+  background: linear-gradient(to bottom, #ffff70 0%, #fffff2 100%);
+}
+
+.control-box {
+  margin-bottom: 0.5em;
+
+  button {
+    font-size: 1.3em;
+    padding: 0.25em 0.5em;
+
+    &:not(:last-of-type) {
+      margin-right: 1em;
+    }
+  }
+}
+
+.progress-box {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+  width: 60%;
+
+  .spinner {
+    width: 3em;
+    height: 3em;
+    margin-right: 1em;
+  }
+
+  progress {
+    flex: 1;
+  }
+}
+
+.descriptor-box {
+  @include editor-box();
+  background: linear-gradient(to bottom, #b5ffb7 0%, #f8ffe5 100%);
+}
+
+.error-box {
+  @include editor-box();
+  background: linear-gradient(to bottom, #ffb7b7 0%, #fceaea 100%);
+}

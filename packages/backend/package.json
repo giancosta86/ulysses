@@ -1,0 +1,77 @@
+{
+  "name": "@giancosta86/ulysses",
+  "version": "0.1.0",
+  "description": "Simplified generation of OmniCourse descriptors",
+  "bin": {
+    "ulysses": "bin/ulysses.js"
+  },
+  "scripts": {
+    "clean-dependencies": "rimraf node_modules",
+    "clean": "rimraf dist",
+    "start": "cross-env DEBUG=server,server:* NODE_ENV=development ts-node src/bin/ulysses.ts",
+    "test": "jest",
+    "build": "yarn test && tsc && copy-files-from-to && cd dist && yarn pack && cd ..",
+    "rebuild": "yarn clean && yarn build"
+  },
+  "copyFiles": [
+    {
+      "from": "package.json",
+      "to": "dist/package.json"
+    },
+    {
+      "from": ".npmignore",
+      "to": "dist/.npmignore"
+    }
+  ],
+  "author": {
+    "name": "Gianluca Costa",
+    "url": "https://gianlucacosta.info/",
+    "email": "gianluca@gianlucacosta.info"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giancosta86/ulysses.git"
+  },
+  "homepage": "https://github.com/giancosta86/ulysses#readme",
+  "bugs": {
+    "url": "https://github.com/giancosta86/ulysses/issues"
+  },
+  "keywords": [
+    "OmniCourse",
+    "descriptors",
+    "automated",
+    "simplified",
+    "generation",
+    "app"
+  ],
+  "dependencies": {
+    "cross-fetch": "^3.0.6",
+    "debug": "^4.2.0",
+    "express": "^4.17.1",
+    "he": "^1.2.0",
+    "open": "^7.3.0",
+    "optional-typescript": "^1.4.1",
+    "socket.io": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.8",
+    "@types/debug": "^4.1.5",
+    "@types/express": "^4.17.9",
+    "@types/he": "^1.1.1",
+    "@types/jest": "^26.0.15",
+    "@types/socket.io": "^2.1.11",
+    "copy-files-from-to": "^3.2.0",
+    "cross-env": "^7.0.2",
+    "jest": "^26.6.3",
+    "moq.ts": "^6.4.0",
+    "rimraf": "^3.0.2",
+    "supports-color": "^8.0.0",
+    "ts-jest": "^26.4.3",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
