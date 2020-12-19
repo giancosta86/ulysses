@@ -6,7 +6,7 @@ export class PacktParser extends RegexPageParser {
   }
 
   protected getTitleRegex(): RegExp {
-    return /<meta\s+property\s*=\s*"og:title"\s+content\s*=\s*"([^["]+)(?:"|\s*\[)/
+    return /<meta\s+property\s*=\s*"og:title"\s+content\s*=\s*"([^["]+?)\s*(?:"|\[|\|)/
   }
 
   protected getDurationRegex(): RegExp {
