@@ -1,7 +1,8 @@
 {
-  "compilerOptions": {
+  "compilerOptions": {    
     "target": "es2019",
-    "strict": true,
+    "incremental": true,
+    "strict": true,    
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
