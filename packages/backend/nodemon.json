@@ -1,6 +1,6 @@
 {
-  "watch": ["src/**/*.ts"],
+  "watch": "src",
   "ext": "ts,tsx,json",
-  "ignore": ["**/*.test.ts"],
+  "ignore": "**/*.test.ts",
   "exec": "ts-node src/bin/ulysses.ts"
 }
