@@ -4,12 +4,12 @@ import open from "open"
 import { startBackend } from "../server"
 import { DEFAULT_BACKEND_PORT } from "../server/shared"
 
-process.env.NODE_ENV ||= "production"
-
 const args = process.argv.slice(2)
-const port = args[0] ? parseInt(args[0]) : DEFAULT_BACKEND_PORT
+const port = parseInt(args[0]) || DEFAULT_BACKEND_PORT
 
-startBackend(port, () => {
+const inProduction = process.env.NODE_ENV === "production"
+
+startBackend(port, inProduction, () => {
   const url = `http://localhost:${port}/`
 
   console.log(`Listening on url: ${url}`)
