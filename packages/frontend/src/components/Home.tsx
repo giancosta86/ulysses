@@ -38,7 +38,7 @@ export default function Home() {
       </div>
       <div className="control-box">
         <button
-          disabled={inProgress || inputText.trim().length == 0}
+          disabled={inProgress || !inputText.trim()}
           onClick={startFetchingDescriptors}
         >
           Run
