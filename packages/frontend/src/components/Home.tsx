@@ -70,16 +70,13 @@ export default function Home() {
 
       <div
         className="descriptor-box"
-        hidden={inProgress || courseDescriptorsText.length == 0}
+        hidden={inProgress || !courseDescriptorsText}
       >
         <p>Descriptors:</p>
         <textarea cols={50} rows={15} value={courseDescriptorsText} readOnly />
       </div>
 
-      <div
-        className="error-box"
-        hidden={inProgress || lineErrorsText.length == 0}
-      >
+      <div className="error-box" hidden={inProgress || !lineErrorsText}>
         <p>Errors:</p>
         <textarea cols={50} rows={15} value={lineErrorsText} readOnly />
       </div>
