@@ -66,18 +66,20 @@ describe("The pipeline for getting a course descriptor", () => {
   it("should return the course descriptor for a Udemy course", async () => {
     const url = "https://www.udemy.com/course/understanding-typescript/"
 
-    const actualDescriptor = await getCourseDescriptor(
+    const parsedDescriptor = await getCourseDescriptor(
       new UdemyParser(),
       `11/4: ${url}`
     )
 
-    expect(actualDescriptor).toEqual(
-      Some({
-        title: "Understanding TypeScript - 2020 Edition",
-        minutes: 15 * 60,
-        url,
-        completionDate: `${new Date().getFullYear()}-04-11`
-      })
+    const actualDescriptor = parsedDescriptor.valueOrFailure()
+
+    expect(actualDescriptor.title).toMatch(
+      /Understanding TypeScript - \d{4} Edition/
+    )
+    expect(actualDescriptor.url).toEqual(url)
+    expect(actualDescriptor.minutes).toEqual(15 * 60)
+    expect(actualDescriptor.completionDate).toEqual(
+      `${new Date().getFullYear()}-04-11`
     )
   })
 

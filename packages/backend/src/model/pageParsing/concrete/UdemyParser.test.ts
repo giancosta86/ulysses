@@ -19,13 +19,15 @@ describe("Udemy parser", () => {
       new URL("https://www.udemy.com/course/understanding-typescript/")
     )
 
-    expect(actualParsingResult).toEqual(
-      Some({
-        title: "Understanding TypeScript - 2020 Edition",
-        minutes: 15 * 60,
-        url: "https://www.udemy.com/course/understanding-typescript/"
-      })
+    const actualDescriptor = actualParsingResult.valueOrFailure()
+
+    expect(actualDescriptor.title).toMatch(
+      /Understanding TypeScript - \d{4} Edition/
     )
+    expect(actualDescriptor.url).toEqual(
+      "https://www.udemy.com/course/understanding-typescript/"
+    )
+    expect(actualDescriptor.minutes).toEqual(15 * 60)
   })
 
   it("should parse a course whose duration has floating-point hours", async () => {
@@ -43,38 +45,6 @@ describe("Udemy parser", () => {
         minutes: 6.5 * 60,
         url:
           "https://www.udemy.com/course/angular-essentials-angular-2-angular-4-with-typescript/"
-      })
-    )
-  })
-
-  it("should parse a course whose duration has hours and minutes", async () => {
-    const parser = new UdemyParser()
-
-    const actualParsingResult = await parser.parse(
-      new URL("https://www.udemy.com/course/learn-webpack-2-from-scratch/")
-    )
-
-    expect(actualParsingResult).toEqual(
-      Some({
-        title: "Learn Webpack 2 from scratch",
-        minutes: 60 + 16,
-        url: "https://www.udemy.com/course/learn-webpack-2-from-scratch/"
-      })
-    )
-  })
-
-  it("should handle courses whose displayed duration differs from the metadata", async () => {
-    const parser = new UdemyParser()
-
-    const actualParsingResult = await parser.parse(
-      new URL("https://www.udemy.com/course/webpack-5-fundamentals")
-    )
-
-    expect(actualParsingResult).toEqual(
-      Some({
-        title: "Webpack 5 Fundamentals",
-        minutes: 60 + 8, //But the UI shows 1hr 25min!
-        url: "https://www.udemy.com/course/webpack-5-fundamentals/"
       })
     )
   })

@@ -33,7 +33,7 @@ describe("Merged descriptor creation", () => {
 
       expect(
         createMergedDescriptor(new NopPageParser(), courseReference)
-      ).rejects.toThrow(new TypeError("Invalid URL: INEXISTING"))
+      ).rejects.toThrow()
     })
   })
 

@@ -69,25 +69,6 @@ describe("Packt parser", () => {
     )
   })
 
-  it("should parse a course whose duration is less than 1 hour", async () => {
-    const parser = new PacktParser()
-
-    const actualParsingResult = await parser.parse(
-      new URL(
-        "https://www.packtpub.com/product/introduction-to-unity-video/9781789807653"
-      )
-    )
-
-    expect(actualParsingResult).toEqual(
-      Some({
-        title: "Introduction to Unity",
-        minutes: 59,
-        url:
-          "https://www.packtpub.com/product/introduction-to-unity-video/9781789807653"
-      })
-    )
-  })
-
   it("should parse a course whose duration is precisely 1 hour", async () => {
     const parser = new PacktParser()
 
