@@ -4,13 +4,13 @@ import debug from "debug"
 import http from "http"
 
 import { setupWebSocket } from "./websocket"
-import { DEFAULT_BACKEND_PORT, BACKEND_PORT_PARAM } from "./shared"
+import { BACKEND_PORT_PARAM } from "./shared"
 
 export const log = debug("server")
 
 export function startBackend(
-  port: number,
   inProduction: boolean,
+  port: number,
   callback?: () => void
 ) {
   const app = express()
@@ -23,7 +23,7 @@ export function startBackend(
 
     app.get("/", (req, res) => {
       res.redirect(
-        `http://localhost:${FRONTEND_SERVER_PORT}/?${BACKEND_PORT_PARAM}=${DEFAULT_BACKEND_PORT}`
+        `http://localhost:${FRONTEND_SERVER_PORT}/?${BACKEND_PORT_PARAM}=${port}`
       )
     })
   }
