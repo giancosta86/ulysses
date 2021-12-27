@@ -50,10 +50,7 @@ export default function Home() {
 
         <button
           onClick={clearResults}
-          disabled={
-            inProgress ||
-            (courseDescriptorsText.length == 0 && lineErrorsText.length == 0)
-          }
+          disabled={inProgress || (!courseDescriptorsText && !lineErrorsText)}
         >
           Clear results
         </button>
