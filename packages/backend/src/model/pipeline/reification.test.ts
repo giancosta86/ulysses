@@ -1,4 +1,4 @@
-import { CourseDescriptor } from "./shared/CourseDescriptor"
+import { CourseDescriptor } from "../shared/CourseDescriptor"
 import { CourseReificationError, reifyCourseDescriptor } from "./reification"
 
 describe("Reification of a CourseDescriptor", () => {

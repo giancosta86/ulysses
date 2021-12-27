@@ -1,6 +1,6 @@
 import { CourseReference } from "./referenceParsing"
-import { CourseDescriptor } from "./shared/CourseDescriptor"
-import { PageParser } from "./pageParsing/PageParser"
+import { CourseDescriptor } from "../shared/CourseDescriptor"
+import { PageParser } from "../pageParsing/PageParser"
 
 export function createMergedDescriptor(
   pageParser: PageParser,

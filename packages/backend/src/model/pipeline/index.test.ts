@@ -1,11 +1,11 @@
 import { None, Some } from "optional-typescript"
-import { PacktParser } from "./pageParsing/concrete/PacktParser"
-import { PluralsightParser } from "./pageParsing/concrete/PluralsightParser"
-import { TedParser } from "./pageParsing/concrete/TedParser"
-import { UdemyParser } from "./pageParsing/concrete/UdemyParser"
-import { FailingPageParser } from "./pageParsing/FailingPageParser"
-import { NopPageParser } from "./pageParsing/NopPageParser"
-import { getCourseDescriptor } from "./pipeline"
+import { PacktParser } from "../pageParsing/concrete/PacktParser"
+import { PluralsightParser } from "../pageParsing/concrete/PluralsightParser"
+import { TedParser } from "../pageParsing/concrete/TedParser"
+import { UdemyParser } from "../pageParsing/concrete/UdemyParser"
+import { FailingPageParser } from "../pageParsing/FailingPageParser"
+import { NopPageParser } from "../pageParsing/NopPageParser"
+import { getCourseDescriptor } from "."
 
 describe("The pipeline for getting a course descriptor", () => {
   it("should return None on empty line", async () => {

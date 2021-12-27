@@ -1,4 +1,4 @@
-import { CourseDescriptor } from "./shared/CourseDescriptor"
+import { CourseDescriptor } from "../shared/CourseDescriptor"
 
 export class CourseReificationError extends Error {
   constructor(message?: string) {

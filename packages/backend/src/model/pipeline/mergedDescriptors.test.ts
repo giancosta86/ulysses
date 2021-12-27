@@ -2,9 +2,9 @@ import { CourseReference } from "./referenceParsing"
 import { createMergedDescriptor } from "./mergedDescriptors"
 import { Mock, Times, It } from "moq.ts"
 import { None, Some } from "optional-typescript"
-import { NopPageParser } from "./pageParsing/NopPageParser"
-import { PageParser } from "./pageParsing/PageParser"
-import { FailingPageParser } from "./pageParsing/FailingPageParser"
+import { NopPageParser } from "../pageParsing/NopPageParser"
+import { PageParser } from "../pageParsing/PageParser"
+import { FailingPageParser } from "../pageParsing/FailingPageParser"
 
 describe("Merged descriptor creation", () => {
   describe("when the url is missing", () => {
