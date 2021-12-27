@@ -9,7 +9,7 @@
     "clean-dependencies": "rimraf node_modules",
     "clean": "rimraf dist",
     "wait-for-frontend": "wait-on http://localhost:3000/",
-    "start": "yarn wait-for-frontend && cross-env DEBUG=server,server:* NODE_ENV=development nodemon",
+    "start": "yarn wait-for-frontend && cross-env DEBUG=server,server:* nodemon",
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "yarn test && tsc && copy-files-from-to && cd dist && yarn pack && cd ..",
