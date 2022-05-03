@@ -62,7 +62,7 @@ describe("Packt parser", () => {
     expect(actualParsingResult).toEqual(
       Some({
         title: "Learn to Code with Ruby",
-        minutes: 31 * 60 + 24,
+        minutes: 31 * 60 + 27,
         url:
           "https://www.packtpub.com/product/learn-to-code-with-ruby-video/9781788834063"
       })
