@@ -1,4 +1,3 @@
-import { None, Some } from "optional-typescript"
 import { TedParser } from "./TedParser"
 
 describe("Ted parser", () => {
@@ -9,7 +8,7 @@ describe("Ted parser", () => {
       new URL("https://gianlucacosta.info/test")
     )
 
-    expect(actualParsingResult).toEqual(None())
+    expect(actualParsingResult).toEqual(null)
   })
 
   it("should parse a talk whose duration is less than 10 minutes", async () => {
@@ -21,14 +20,12 @@ describe("Ted parser", () => {
       )
     )
 
-    expect(actualParsingResult).toEqual(
-      Some({
-        title: "TED's secret to great public speaking",
-        minutes: 8,
-        url:
-          "https://www.ted.com/talks/chris_anderson_ted_s_secret_to_great_public_speaking"
-      })
-    )
+    expect(actualParsingResult).toEqual({
+      title: "TED's secret to great public speaking",
+      minutes: 8,
+      url:
+        "https://www.ted.com/talks/chris_anderson_ted_s_secret_to_great_public_speaking"
+    })
   })
 
   it("should parse a talk whose duration is more than 10 minutes", async () => {
@@ -38,12 +35,10 @@ describe("Ted parser", () => {
       new URL("https://www.ted.com/talks/rory_stewart_why_democracy_matters")
     )
 
-    expect(actualParsingResult).toEqual(
-      Some({
-        title: "Why democracy matters",
-        minutes: 14,
-        url: "https://www.ted.com/talks/rory_stewart_why_democracy_matters"
-      })
-    )
+    expect(actualParsingResult).toEqual({
+      title: "Why democracy matters",
+      minutes: 14,
+      url: "https://www.ted.com/talks/rory_stewart_why_democracy_matters"
+    })
   })
 })

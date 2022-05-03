@@ -1,55 +1,54 @@
 import * as he from "he"
-import { Optional, Some, None } from "optional-typescript"
 import { CourseDescriptor } from "../shared/CourseDescriptor"
 import { BasicPageParser } from "./BasicPageParser"
 
 export abstract class MultipartPageParser extends BasicPageParser {
   protected parseText(
     pageText: string
-  ): Promise<Optional<Partial<CourseDescriptor>>> {
+  ): Promise<Partial<CourseDescriptor> | null> {
     return (async () => {
       const parsedResult: Partial<CourseDescriptor> = {}
 
       const title = this.getTitle(pageText)
-      if (title.hasValue) {
-        parsedResult.title = he.decode(title.valueOrFailure().trim())
+      if (title) {
+        parsedResult.title = he.decode(title.trim())
       }
 
       const minutes = this.getMinutes(pageText)
-      if (minutes.hasValue && !isNaN(minutes.valueOrFailure())) {
-        parsedResult.minutes = minutes.valueOrFailure()
+      if (minutes && !isNaN(minutes)) {
+        parsedResult.minutes = minutes
       }
 
       const portal = this.getPortal(pageText)
-      if (portal.hasValue) {
-        parsedResult.portal = he.decode(portal.valueOrFailure().trim())
+      if (portal) {
+        parsedResult.portal = he.decode(portal.trim())
       }
 
       const certificateUrl = this.getCertificateUrl(pageText)
-      if (certificateUrl.hasValue) {
-        parsedResult.certificateUrl = certificateUrl.valueOrFailure().trim()
+      if (certificateUrl) {
+        parsedResult.certificateUrl = certificateUrl.trim()
       }
 
       const url = this.getUrl(pageText)
-      if (url.hasValue) {
-        parsedResult.url = url.valueOrFailure().trim()
+      if (url) {
+        parsedResult.url = url.trim()
       }
 
-      return Some(parsedResult)
+      return parsedResult
     })()
   }
 
-  protected abstract getTitle(pageText: string): Optional<string>
+  protected abstract getTitle(pageText: string): string | null
 
-  protected abstract getMinutes(pageText: string): Optional<number>
+  protected abstract getMinutes(pageText: string): number | null
 
-  protected getPortal(pageText: string): Optional<string> {
-    return None()
+  protected getPortal(pageText: string): string | null {
+    return null
   }
 
-  protected getCertificateUrl(pageText: string): Optional<string> {
-    return None()
+  protected getCertificateUrl(pageText: string): string | null {
+    return null
   }
 
-  protected abstract getUrl(pageText: string): Optional<string>
+  protected abstract getUrl(pageText: string): string | null
 }

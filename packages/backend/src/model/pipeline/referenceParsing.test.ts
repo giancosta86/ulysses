@@ -1,4 +1,3 @@
-import { None, Optional, Some } from "optional-typescript"
 import {
   parseCourseReference,
   CourseReference,
@@ -11,10 +10,10 @@ describe("Parsing course references", () => {
       "8/9: https://www.pluralsight.com/courses/cryptography-big-picture"
     )
 
-    const expectedReference: Optional<CourseReference> = Some({
+    const expectedReference: CourseReference = {
       completionDate: `${new Date().getFullYear()}-09-08`,
       url: "https://www.pluralsight.com/courses/cryptography-big-picture"
-    })
+    }
 
     expect(actualReference).toEqual(expectedReference)
   })
@@ -24,11 +23,11 @@ describe("Parsing course references", () => {
       "4/10: https://www.pluralsight.com/courses/c-sharp-design-patterns-data-access-patterns"
     )
 
-    const expectedReference: Optional<CourseReference> = Some({
+    const expectedReference: CourseReference = {
       completionDate: `${new Date().getFullYear()}-10-04`,
       url:
         "https://www.pluralsight.com/courses/c-sharp-design-patterns-data-access-patterns"
-    })
+    }
 
     expect(actualReference).toEqual(expectedReference)
   })
@@ -38,11 +37,11 @@ describe("Parsing course references", () => {
       "4/10/2020: https://www.pluralsight.com/courses/c-sharp-design-patterns-data-access-patterns"
     )
 
-    const expectedReference: Optional<CourseReference> = Some({
+    const expectedReference: CourseReference = {
       completionDate: `2020-10-04`,
       url:
         "https://www.pluralsight.com/courses/c-sharp-design-patterns-data-access-patterns"
-    })
+    }
 
     expect(actualReference).toEqual(expectedReference)
   })
@@ -52,12 +51,12 @@ describe("Parsing course references", () => {
       '23/10: "Introduction to Redux with TypeScript" https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript'
     )
 
-    const expectedReference: Optional<CourseReference> = Some({
+    const expectedReference: CourseReference = {
       title: "Introduction to Redux with TypeScript",
       completionDate: `${new Date().getFullYear()}-10-23`,
       url:
         "https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript"
-    })
+    }
 
     expect(actualReference).toEqual(expectedReference)
   })
@@ -67,13 +66,13 @@ describe("Parsing course references", () => {
       '23/10: "Introduction to Redux with TypeScript" https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript #25h30'
     )
 
-    const expectedReference: Optional<CourseReference> = Some({
+    const expectedReference: CourseReference = {
       title: "Introduction to Redux with TypeScript",
       completionDate: `${new Date().getFullYear()}-10-23`,
       url:
         "https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript",
       minutes: 25 * 60 + 30
-    })
+    }
 
     expect(actualReference).toEqual(expectedReference)
   })
@@ -83,12 +82,12 @@ describe("Parsing course references", () => {
       "23/10: https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript #25h30"
     )
 
-    const expectedReference: Optional<CourseReference> = Some({
+    const expectedReference: CourseReference = {
       completionDate: `${new Date().getFullYear()}-10-23`,
       url:
         "https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript",
       minutes: 25 * 60 + 30
-    })
+    }
 
     expect(actualReference).toEqual(expectedReference)
   })
@@ -98,11 +97,11 @@ describe("Parsing course references", () => {
       '17/8: "General Data Protection Regulation (GDPR) 2019" #0h50'
     )
 
-    const expectedReference: Optional<CourseReference> = Some({
+    const expectedReference: CourseReference = {
       completionDate: `${new Date().getFullYear()}-08-17`,
       title: "General Data Protection Regulation (GDPR) 2019",
       minutes: 50
-    })
+    }
 
     expect(actualReference).toEqual(expectedReference)
   })
@@ -112,13 +111,13 @@ describe("Parsing course references", () => {
       ' \t   23/10: "Introduction to Redux with TypeScript" https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript #25h30                     '
     )
 
-    const expectedReference: Optional<CourseReference> = Some({
+    const expectedReference: CourseReference = {
       completionDate: `${new Date().getFullYear()}-10-23`,
       title: "Introduction to Redux with TypeScript",
       url:
         "https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript",
       minutes: 25 * 60 + 30
-    })
+    }
 
     expect(actualReference).toEqual(expectedReference)
   })
@@ -126,13 +125,13 @@ describe("Parsing course references", () => {
   it("should ignore comment lines", () => {
     const actualReference = parseCourseReference("//Comment line")
 
-    expect(actualReference).toEqual(None())
+    expect(actualReference).toEqual(null)
   })
 
   it("should ignore comment lines with leading and trailing spaces", () => {
     const actualReference = parseCourseReference("    \t   //Comment line  \t ")
 
-    expect(actualReference).toEqual(None())
+    expect(actualReference).toEqual(null)
   })
 
   it("should ignore intermediate spaces", () => {
@@ -140,13 +139,13 @@ describe("Parsing course references", () => {
       '23   /  10    :      "Introduction to Redux with TypeScript"  \t  https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript       #25h30'
     )
 
-    const expectedReference: Optional<CourseReference> = Some({
+    const expectedReference: CourseReference = {
       completionDate: `${new Date().getFullYear()}-10-23`,
       title: "Introduction to Redux with TypeScript",
       url:
         "https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript",
       minutes: 25 * 60 + 30
-    })
+    }
 
     expect(actualReference).toEqual(expectedReference)
   })
@@ -154,13 +153,13 @@ describe("Parsing course references", () => {
   it("should ignore empty lines", () => {
     const actualReference = parseCourseReference("")
 
-    expect(actualReference).toEqual(None())
+    expect(actualReference).toEqual(null)
   })
 
   it("should ignore lines made of spaces", () => {
     const actualReference = parseCourseReference("  \t ")
 
-    expect(actualReference).toEqual(None())
+    expect(actualReference).toEqual(null)
   })
 
   it("should fail when the line format is unexpected", () => {

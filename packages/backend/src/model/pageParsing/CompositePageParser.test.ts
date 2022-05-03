@@ -1,19 +1,18 @@
 import { Mock, It, Times } from "moq.ts"
-import { None, Some } from "optional-typescript"
 import { CourseDescriptor } from "../shared/CourseDescriptor"
 import { CompositePageParser } from "./CompositePageParser"
 import { PageParser } from "./PageParser"
 
 describe("Composite parser", () => {
   describe("when there are no nested parsers", () => {
-    it("should return None", async () => {
+    it("should return null", async () => {
       const composite = new CompositePageParser()
 
       const actualResult = await composite.parse(
         new URL("https://gianlucacosta.info/test")
       )
 
-      expect(actualResult).toEqual(None())
+      expect(actualResult).toEqual(null)
     })
   })
 
@@ -26,7 +25,7 @@ describe("Composite parser", () => {
 
       const subParserMock = new Mock<PageParser>()
         .setup((instance) => instance.parse(It.IsAny()))
-        .returns(Promise.resolve(Some(partialDescriptor)))
+        .returns(Promise.resolve(partialDescriptor))
 
       const subParser = subParserMock.object()
       const composite = new CompositePageParser(subParser)
@@ -35,12 +34,12 @@ describe("Composite parser", () => {
         new URL("https://gianlucacosta.info/test")
       )
 
-      expect(actualResult).toEqual(Some(partialDescriptor))
+      expect(actualResult).toEqual(partialDescriptor)
     })
   })
 
   describe("when there are more nested parser", () => {
-    it("should return the first non-None value", async () => {
+    it("should return the first non-null value", async () => {
       const secondResult: Partial<CourseDescriptor> = {
         title: "Second title",
         minutes: 200
@@ -48,19 +47,19 @@ describe("Composite parser", () => {
 
       const firstSubParserMock = new Mock<PageParser>()
         .setup((instance) => instance.parse(It.IsAny()))
-        .returns(Promise.resolve(None()))
+        .returns(Promise.resolve(null))
 
       const firstSubParser = firstSubParserMock.object()
 
       const secondSubParserMock = new Mock<PageParser>()
         .setup((instance) => instance.parse(It.IsAny()))
-        .returns(Promise.resolve(Some(secondResult)))
+        .returns(Promise.resolve(secondResult))
 
       const secondSubParser = secondSubParserMock.object()
 
       const thirdSubParserMock = new Mock<PageParser>()
         .setup((instance) => instance.parse(It.IsAny()))
-        .returns(Promise.resolve(None()))
+        .returns(Promise.resolve(null))
 
       const thirdSubParser = thirdSubParserMock.object()
 
@@ -74,7 +73,7 @@ describe("Composite parser", () => {
         new URL("https://gianlucacosta.info/test")
       )
 
-      expect(actualResult).toEqual(Some(secondResult))
+      expect(actualResult).toEqual(secondResult)
 
       firstSubParserMock.verify((instance) => instance.parse(It.IsAny()))
       secondSubParserMock.verify((instance) => instance.parse(It.IsAny()))

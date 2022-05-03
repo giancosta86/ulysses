@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/ulysses",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Simplified generation of OmniCourse descriptors",
   "bin": {
     "ulysses": "bin/ulysses.js"
@@ -62,7 +62,6 @@
     "express": "^4.17.1",
     "he": "^1.2.0",
     "open": "^7.3.0",
-    "optional-typescript": "^1.4.1",
     "socket.io": "^3.0.3"
   },
   "devDependencies": {

@@ -35,11 +35,8 @@ export function setupWebSocket(httpServer: http.Server): void {
             pageParser,
             line
           )
-          if (courseDescriptorOption.hasValue) {
-            socket.emit(
-              COURSE_DESCRIPTOR,
-              courseDescriptorOption.valueOrFailure()
-            )
+          if (courseDescriptorOption) {
+            socket.emit(COURSE_DESCRIPTOR, courseDescriptorOption)
           } else {
             socket.emit(LINE_ERROR, {
               line,

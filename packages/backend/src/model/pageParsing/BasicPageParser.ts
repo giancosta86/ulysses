@@ -1,4 +1,3 @@
-import { Optional, None } from "optional-typescript"
 import { CourseDescriptor } from "../shared/CourseDescriptor"
 import { PageParser } from "./PageParser"
 import fetch from "cross-fetch"
@@ -10,10 +9,10 @@ export abstract class BasicPageParser implements PageParser {
     this.acceptedHosts = acceptedHosts
   }
 
-  parse(url: URL): Promise<Optional<Partial<CourseDescriptor>>> {
+  parse(url: URL): Promise<Partial<CourseDescriptor> | null> {
     return (async () => {
       if (!this.acceptedHosts.includes(url.host)) {
-        return None<Partial<CourseDescriptor>>()
+        return null
       }
 
       const response = await fetch(url.toString())
@@ -26,5 +25,5 @@ export abstract class BasicPageParser implements PageParser {
 
   protected abstract parseText(
     pageText: string
-  ): Promise<Optional<Partial<CourseDescriptor>>>
+  ): Promise<Partial<CourseDescriptor> | null>
 }

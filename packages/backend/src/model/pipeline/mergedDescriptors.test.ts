@@ -1,7 +1,6 @@
 import { CourseReference } from "./referenceParsing"
 import { createMergedDescriptor } from "./mergedDescriptors"
 import { Mock, Times, It } from "moq.ts"
-import { None, Some } from "optional-typescript"
 import { NopPageParser } from "../pageParsing/NopPageParser"
 import { PageParser } from "../pageParsing/PageParser"
 import { FailingPageParser } from "../pageParsing/FailingPageParser"
@@ -41,7 +40,7 @@ describe("Merged descriptor creation", () => {
     it("should call the parser", async () => {
       const parserMock = new Mock<PageParser>()
         .setup((instance) => instance.parse(It.IsAny()))
-        .returns(Promise.resolve(None()))
+        .returns(Promise.resolve(null))
 
       const parser = parserMock.object()
 
@@ -60,7 +59,7 @@ describe("Merged descriptor creation", () => {
       it("should return the unaltered course reference", async () => {
         const parserMock = new Mock<PageParser>()
           .setup((instance) => instance.parse(It.IsAny()))
-          .returns(Promise.resolve(Some({})))
+          .returns(Promise.resolve({}))
 
         const parser = parserMock.object()
 
@@ -83,7 +82,7 @@ describe("Merged descriptor creation", () => {
       it("should overwrite existing fields", async () => {
         const parserMock = new Mock<PageParser>()
           .setup((instance) => instance.parse(It.IsAny()))
-          .returns(Promise.resolve(Some({ title: "New title" })))
+          .returns(Promise.resolve({ title: "New title" }))
 
         const parser = parserMock.object()
 
@@ -107,7 +106,7 @@ describe("Merged descriptor creation", () => {
       it("should add new fields", async () => {
         const parserMock = new Mock<PageParser>()
           .setup((instance) => instance.parse(It.IsAny()))
-          .returns(Promise.resolve(Some({ portal: "My portal" })))
+          .returns(Promise.resolve({ portal: "My portal" }))
 
         const parser = parserMock.object()
 

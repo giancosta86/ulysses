@@ -1,5 +1,3 @@
-import { None, Optional, Some } from "optional-typescript"
-
 const referenceLineRegex = /(?<day>\d{1,2})\s*\/\s*(?<month>\d{1,2})(?:\/(?<year>\d{4}))?\s*:\s*(?:"(?<title>[^"]+)"(?:\s+|$))?(?:(?<url>[^#\s]+)(?:\s+|$))?(?:#(?<hours>\d+)h(?<minutes>\d+))?/
 
 export interface CourseReference {
@@ -16,11 +14,11 @@ export class CourseReferenceParsingError extends Error {
   }
 }
 
-export function parseCourseReference(line: string): Optional<CourseReference> {
+export function parseCourseReference(line: string): CourseReference | null {
   const actualLine = line.trim()
 
   if (actualLine == "" || actualLine.startsWith("//")) {
-    return None()
+    return null
   }
 
   const match = referenceLineRegex.exec(actualLine)
@@ -57,10 +55,10 @@ export function parseCourseReference(line: string): Optional<CourseReference> {
   const minutes = parseInt(match.groups.minutes)
   const totalMinutes = hours * 60 + minutes
 
-  return Some({
+  return {
     completionDate: formattedCompletionDate,
     title,
     url,
     minutes: !isNaN(totalMinutes) ? totalMinutes : undefined
-  })
+  }
 }

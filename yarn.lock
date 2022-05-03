@@ -5022,11 +5022,6 @@ opn@^5.5.0:
   dependencies:
     is-wsl "^1.1.0"
 
-optional-typescript@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/optional-typescript/-/optional-typescript-1.4.1.tgz#90b927ab644245a2849dc46a6f1af09dbef925bc"
-  integrity sha512-GJwHos3iirkZcmGDVJYaflIFrEMHt4ivC7me7OU5LGnlAAGd9RreUatW0Alcs1HU1p89HtQnpWMIsp4z5slKOQ==
-
 optionator@^0.8.1:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.3.tgz#84fa1d036fe9d3c7e21d99884b601167ec8fb495"

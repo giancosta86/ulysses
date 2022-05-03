@@ -1,4 +1,3 @@
-import { None, Some } from "optional-typescript"
 import { PluralsightParser } from "./PluralsightParser"
 
 describe("Pluralsight parser", () => {
@@ -9,7 +8,7 @@ describe("Pluralsight parser", () => {
       new URL("https://gianlucacosta.info/test")
     )
 
-    expect(actualParsingResult).toEqual(None())
+    expect(actualParsingResult).toEqual(null)
   })
 
   it("should parse a course whose duration includes both hours and minutes", async () => {
@@ -19,13 +18,11 @@ describe("Pluralsight parser", () => {
       new URL("https://www.pluralsight.com/courses/cryptography-big-picture")
     )
 
-    expect(actualParsingResult).toEqual(
-      Some({
-        title: "Cryptography: The Big Picture",
-        minutes: 84,
-        url: "https://www.pluralsight.com/courses/cryptography-big-picture"
-      })
-    )
+    expect(actualParsingResult).toEqual({
+      title: "Cryptography: The Big Picture",
+      minutes: 84,
+      url: "https://www.pluralsight.com/courses/cryptography-big-picture"
+    })
   })
 
   it("should parse a course whose duration is less than an hour", async () => {
@@ -35,12 +32,10 @@ describe("Pluralsight parser", () => {
       new URL("https://www.pluralsight.com/courses/typescript-big-picture")
     )
 
-    expect(actualParsingResult).toEqual(
-      Some({
-        title: "TypeScript: The Big Picture",
-        minutes: 44,
-        url: "https://www.pluralsight.com/courses/typescript-big-picture"
-      })
-    )
+    expect(actualParsingResult).toEqual({
+      title: "TypeScript: The Big Picture",
+      minutes: 44,
+      url: "https://www.pluralsight.com/courses/typescript-big-picture"
+    })
   })
 })

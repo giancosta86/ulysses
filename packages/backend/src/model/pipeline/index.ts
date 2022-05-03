@@ -1,4 +1,3 @@
-import { None, Optional, Some } from "optional-typescript"
 import { parseCourseReference } from "./referenceParsing"
 import { reifyCourseDescriptor } from "./reification"
 import { CourseDescriptor } from "../shared/CourseDescriptor"
@@ -8,18 +7,15 @@ import { PageParser } from "../pageParsing/PageParser"
 export async function getCourseDescriptor(
   parser: PageParser,
   line: string
-): Promise<Optional<CourseDescriptor>> {
+): Promise<CourseDescriptor | null> {
   const courseReference = parseCourseReference(line)
-  if (!courseReference.hasValue) {
-    return Promise.resolve(None())
+  if (!courseReference) {
+    return Promise.resolve(null)
   }
 
-  const mergedDescriptor = await createMergedDescriptor(
-    parser,
-    courseReference.valueOrFailure()
-  )
+  const mergedDescriptor = await createMergedDescriptor(parser, courseReference)
 
   const reifiedCourse = reifyCourseDescriptor(mergedDescriptor)
 
-  return Some(reifiedCourse)
+  return reifiedCourse
 }

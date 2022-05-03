@@ -1,4 +1,3 @@
-import { Optional, None } from "optional-typescript"
 import { CourseDescriptor } from "../shared/CourseDescriptor"
 import { PageParser } from "./PageParser"
 
@@ -9,14 +8,14 @@ export class CompositePageParser implements PageParser {
     this.subParsers = subParsers
   }
 
-  async parse(url: URL): Promise<Optional<Partial<CourseDescriptor>>> {
+  async parse(url: URL): Promise<Partial<CourseDescriptor> | null> {
     for (let subParser of this.subParsers) {
       const subResult = await subParser.parse(url)
-      if (subResult.hasValue) {
+      if (subResult) {
         return subResult
       }
     }
 
-    return None()
+    return null
   }
 }

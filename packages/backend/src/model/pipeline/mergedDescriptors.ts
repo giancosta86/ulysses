@@ -16,7 +16,7 @@ export function createMergedDescriptor(
     }
 
     const url = new URL(courseReference.url)
-    const parsingResult = (await pageParser.parse(url)).valueOr({})
+    const parsingResult = (await pageParser.parse(url)) || {}
 
     const actualResult = {
       ...initialResult,
