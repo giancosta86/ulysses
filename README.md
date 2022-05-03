@@ -65,7 +65,6 @@ To see Ulysses in action, you could input the following text, then click **Run**
 ```
 // Ulysses supports a variety of didactic portals: in this case, the title and the learning time of each course are automatically fetched from its page
 29/4: https://www.ted.com/talks/chris_anderson_ted_s_secret_to_great_public_speaking
-13/5: https://www.udemy.com/course/webpack-5-fundamentals
 18/5: https://www.pluralsight.com/courses/cryptography-big-picture
 23/6: https://www.packtpub.com/product/introduction-to-unity-video/9781789807653
 

@@ -2,7 +2,6 @@ import { None, Some } from "optional-typescript"
 import { PacktParser } from "../pageParsing/concrete/PacktParser"
 import { PluralsightParser } from "../pageParsing/concrete/PluralsightParser"
 import { TedParser } from "../pageParsing/concrete/TedParser"
-import { UdemyParser } from "../pageParsing/concrete/UdemyParser"
 import { FailingPageParser } from "../pageParsing/FailingPageParser"
 import { NopPageParser } from "../pageParsing/NopPageParser"
 import { getCourseDescriptor } from "."
@@ -60,26 +59,6 @@ describe("The pipeline for getting a course descriptor", () => {
         url,
         completionDate: `${new Date().getFullYear()}-03-11`
       })
-    )
-  })
-
-  it("should return the course descriptor for a Udemy course", async () => {
-    const url = "https://www.udemy.com/course/understanding-typescript/"
-
-    const parsedDescriptor = await getCourseDescriptor(
-      new UdemyParser(),
-      `11/4: ${url}`
-    )
-
-    const actualDescriptor = parsedDescriptor.valueOrFailure()
-
-    expect(actualDescriptor.title).toMatch(
-      /Understanding TypeScript - \d{4} Edition/
-    )
-    expect(actualDescriptor.url).toEqual(url)
-    expect(actualDescriptor.minutes).toEqual(15 * 60)
-    expect(actualDescriptor.completionDate).toEqual(
-      `${new Date().getFullYear()}-04-11`
     )
   })
 
