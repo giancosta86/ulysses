@@ -3,7 +3,8 @@ import process from "process"
 import open from "open"
 import { startBackend } from "../server"
 
-const inProduction = process.env.NODE_ENV === "production"
+const inProduction =
+  !process.env.NODE_ENV || process.env.NODE_ENV === "production"
 
 const args = process.argv.slice(2)
 
