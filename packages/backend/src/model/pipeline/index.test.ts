@@ -67,7 +67,7 @@ describe("The pipeline for getting a course descriptor", () => {
 
     expect(actualDescriptor).toEqual({
       title: "Why democracy matters",
-      minutes: 14,
+      minutes: 13,
       url,
       completionDate: `${new Date().getFullYear()}-05-11`
     })

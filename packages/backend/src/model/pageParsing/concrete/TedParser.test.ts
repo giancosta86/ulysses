@@ -37,7 +37,7 @@ describe("Ted parser", () => {
 
     expect(actualParsingResult).toEqual({
       title: "Why democracy matters",
-      minutes: 14,
+      minutes: 13,
       url: "https://www.ted.com/talks/rory_stewart_why_democracy_matters"
     })
   })
