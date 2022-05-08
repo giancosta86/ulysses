@@ -30,6 +30,6 @@ export function startBackend(
 
   const httpServer = http.createServer(app)
 
-  setupWebSocket(httpServer)
+  setupWebSocket(httpServer, inProduction)
   httpServer.listen(port, callback)
 }

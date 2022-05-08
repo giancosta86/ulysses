@@ -16,12 +16,23 @@ const log = debug("server:socket")
 
 const pageParser = new GalleryPageParser()
 
-export function setupWebSocket(httpServer: http.Server): void {
-  const webSocketServer = new Server(httpServer, {
-    cors: {
-      origin: "*"
-    }
-  })
+function createWebSocketOptions(inProduction: boolean) {
+  return inProduction
+    ? {}
+    : {
+        cors: {
+          origin: "*"
+        }
+      }
+}
+
+export function setupWebSocket(
+  httpServer: http.Server,
+  inProduction: boolean
+): void {
+  const webSocketOptions = createWebSocketOptions(inProduction)
+
+  const webSocketServer = new Server(httpServer, webSocketOptions)
 
   webSocketServer.on("connection", (socket: Socket) => {
     log("Socket connection established! ^__^")
