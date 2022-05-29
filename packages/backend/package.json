@@ -1,39 +1,23 @@
 {
   "name": "@giancosta86/ulysses",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Simplified generation of OmniCourse descriptors",
   "bin": {
-    "ulysses": "bin/ulysses.js"
+    "ulysses": "dist/bin/ulysses.js"
   },
+  "files": [
+    "dist/"
+  ],
   "scripts": {
-    "clean-dependencies": "rimraf node_modules",
     "clean": "rimraf dist",
     "wait-for-frontend": "wait-on http://localhost:3000/",
     "start": "yarn wait-for-frontend && cross-env DEBUG=server,server:* NODE_ENV=development nodemon",
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "yarn test && tsc && copy-files-from-to && cd dist && yarn pack && cd ..",
-    "rebuild": "yarn clean && yarn build",
-    "deploy": "yarn publish --non-interactive dist/giancosta86-*.tgz"
+    "build": "yarn test && tsc",
+    "prepack": "yarn build",
+    "deploy": "yarn publish --non-interactive"
   },
-  "copyFiles": [
-    {
-      "from": "package.json",
-      "to": "dist/package.json"
-    },
-    {
-      "from": ".npmignore",
-      "to": "dist/.npmignore"
-    },
-    {
-      "from": "../../README.md",
-      "to": "dist/README.md"
-    },
-    {
-      "from": "../../LICENSE",
-      "to": "dist/LICENSE"
-    }
-  ],
   "author": {
     "name": "Gianluca Costa",
     "url": "https://gianlucacosta.info/",
@@ -71,7 +55,6 @@
     "@types/jest": "^26.0.19",
     "@types/socket.io": "^2.1.11",
     "concurrently": "^5.3.0",
-    "copy-files-from-to": "^3.2.0",
     "cross-env": "^7.0.2",
     "jest": "^26.6.3",
     "moq.ts": "^6.4.0",

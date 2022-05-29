@@ -1,9 +1,9 @@
-import React from "react"
+import React from "react";
 
-import { useHomeState } from "./HomeState"
+import { useHomeState } from "./HomeState";
 
-import logo from "../images/logo.svg"
-import spinner from "../images/spinner.svg"
+import logo from "../images/logo.svg";
+import spinner from "../images/spinner.svg";
 
 export default function Home() {
   const {
@@ -17,10 +17,10 @@ export default function Home() {
     startFetchingDescriptors,
     cancelFetchingDescriptors,
     clearResults
-  } = useHomeState()
+  } = useHomeState();
 
   function showHelp(): void {
-    window.open("https://github.com/giancosta86/ulysses")
+    window.open("https://github.com/giancosta86/ulysses");
   }
 
   return (
@@ -33,7 +33,7 @@ export default function Home() {
         <textarea
           value={inputText}
           readOnly={inProgress}
-          onChange={(event) => setInputText(event.target.value)}
+          onChange={event => setInputText(event.target.value)}
         />
       </div>
       <div className="control-box">
@@ -81,5 +81,5 @@ export default function Home() {
         <textarea cols={50} rows={15} value={lineErrorsText} readOnly />
       </div>
     </div>
-  )
+  );
 }

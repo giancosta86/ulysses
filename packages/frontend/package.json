@@ -4,13 +4,9 @@
   "private": true,
   "description": "Frontend project",
   "scripts": {
-    "clean-dependencies": "rimraf node_modules",
     "clean": "rimraf ../backend/dist/public",
     "start": "webpack serve --config=webpack.dev.js --watch",
-    "test": "echo 'No frontend tests created for now'",
-    "test:watch": "echo 'No frontend tests created for now'",
-    "build": "yarn test && webpack --config=webpack.prod.js",
-    "rebuild": "yarn clean && yarn build"
+    "build": "webpack --config=webpack.prod.js"
   },
   "author": {
     "name": "Gianluca Costa",

@@ -5,16 +5,18 @@
   "workspaces": [
     "packages/*"
   ],
+  "engines": {
+    "node": ">=17.1.0"
+  },
   "scripts": {
+    "format": "prettier --write .",
     "frontend": "yarn workspace @giancosta86/ulysses-frontend",
     "backend": "yarn workspace @giancosta86/ulysses",
-    "clean-dependencies": "yarn frontend clean-dependencies && yarn backend clean-dependencies && rimraf node_modules",
     "clean": "yarn frontend clean && yarn backend clean",
     "start": "concurrently \"yarn frontend start\" \"yarn backend start\"",
     "test": "yarn frontend test && yarn backend test",
     "test:watch": "concurrently \"yarn frontend test:watch\" \"yarn backend test:watch\"",
     "build": "yarn frontend build && yarn backend build",
-    "rebuild": "yarn clean && yarn build",
     "start-prod": "node packages/backend/dist/bin/ulysses.js",
     "deploy": "yarn backend deploy"
   },
@@ -30,6 +32,6 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "prettier": "^2.1.2"
+    "prettier": "^2.6.2"
   }
 }

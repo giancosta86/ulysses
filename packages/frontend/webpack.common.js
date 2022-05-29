@@ -1,7 +1,7 @@
-const path = require("path")
+const path = require("path");
 
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
   module: {
@@ -61,4 +61,4 @@ module.exports = {
       favicon: path.resolve(__dirname, "src/images/favicon.ico")
     })
   ]
-}
+};
