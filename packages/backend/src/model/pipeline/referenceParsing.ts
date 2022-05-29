@@ -1,8 +1,8 @@
 const referenceLineRegex =
-  /(?<day>\d{1,2})\s*\/\s*(?<month>\d{1,2})(?:\/(?<year>\d{4}))?\s*:\s*(?:"(?<title>[^"]+)"(?:\s+|$))?(?:(?<url>[^#\s]+)(?:\s+|$))?(?:#(?<hours>\d+)h(?<minutes>\d+))?/;
+  /(?:(?:(?<day>\d{1,2})\s*\/\s*(?<month>\d{1,2})(?:\/(?<year>\d{4}))?)|(?<in_progress>\*))\s*:\s*(?:"(?<title>[^"]+)"(?:\s+|$))?(?:(?<url>[^#\s]+)(?:\s+|$))?(?:#(?<hours>\d+)h(?<minutes>\d+))?/;
 
 export interface CourseReference {
-  completionDate: string;
+  completionDate?: string;
   title?: string;
   url?: string;
   minutes?: number;
@@ -29,25 +29,7 @@ export function parseCourseReference(line: string): CourseReference | null {
     );
   }
 
-  const day = parseInt(match.groups.day);
-  const formattedDay = day.toString().padStart(2, "0");
-
-  const month = parseInt(match.groups.month);
-  const formattedMonth = month.toString().padStart(2, "0");
-
-  const year = match.groups.year
-    ? parseInt(match.groups.year)
-    : new Date().getFullYear();
-
-  const formattedCompletionDate = `${year}-${formattedMonth}-${formattedDay}`;
-
-  const testCompletionDate = new Date(formattedCompletionDate);
-
-  if (isNaN(testCompletionDate.getDate())) {
-    throw new CourseReferenceParsingError(
-      `Invalid completion date: '${formattedCompletionDate}'`
-    );
-  }
+  const isoDate = parseIsoDate(match.groups);
 
   const url = match.groups.url;
   const title = match.groups.title;
@@ -57,9 +39,35 @@ export function parseCourseReference(line: string): CourseReference | null {
   const totalMinutes = hours * 60 + minutes;
 
   return {
-    completionDate: formattedCompletionDate,
+    completionDate: isoDate,
     title,
     url,
     minutes: !isNaN(totalMinutes) ? totalMinutes : undefined
   };
+}
+
+function parseIsoDate(groups: { [key: string]: string }): string | undefined {
+  if (groups.in_progress) {
+    return;
+  }
+
+  const day = parseInt(groups.day);
+  const formattedDay = day.toString().padStart(2, "0");
+
+  const month = parseInt(groups.month);
+  const formattedMonth = month.toString().padStart(2, "0");
+
+  const year = groups.year ? parseInt(groups.year) : new Date().getFullYear();
+
+  const isoDate = `${year}-${formattedMonth}-${formattedDay}`;
+
+  const testCompletionDate = new Date(isoDate);
+
+  if (isNaN(testCompletionDate.getDate())) {
+    throw new CourseReferenceParsingError(
+      `Invalid completion date: '${isoDate}'`
+    );
+  }
+
+  return isoDate;
 }

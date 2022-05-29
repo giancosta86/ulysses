@@ -4,9 +4,9 @@ _Simplified generation of OmniCourse descriptors_
 
 ![Main screen](screenshots/main.png)
 
-**Ulysses** is a web application - packaged as a standalone command - dedicated to the simplified generation of [OmniCourse](https://github.com/giancosta86/OmniCourse) descriptors.
+**Ulysses** is a web application - packaged as a standalone CLI script - dedicated to the simplified generation of [OmniCourse](https://github.com/giancosta86/OmniCourse) _work descriptors_.
 
-More precisely, the user can input lines using _a compact format_ - one line per work - and the app will try to fetch the missing information from the supported official websites: in other words, Ulysses can be thought of as a sophisticated descendant of the [OmniCourse-Agent](https://github.com/giancosta86/OmniCourse-Agent) browser plugin.
+More precisely, the user can input lines using _a compact format_ - **one line per work** - and the app will try to fetch the missing information from the supported official websites.
 
 > Ulysses becomes essential as one completes more and more courses and books while keeping track of them with OmniCourse.
 
@@ -32,7 +32,7 @@ To stop the app, press **CTRL+C** in the terminal.
 
 ## Input format
 
-Ulysses takes its input data from a minimalist log of didactic entries - usually online courses: each non-empty line must adhere to a specific format and will be converted to an OmniCourse descriptor; _empty lines and spaces between line components are ignored_, as well as lines starting with **//**.
+Ulysses reads a minimalist log of **works**: each non-empty line must adhere to a specific format and will be converted to an OmniCourse _work descriptor_ in **JSON format**; _empty lines and spaces between line components are ignored_, as well as lines starting with **//**.
 
 This is the expected line format:
 
@@ -42,9 +42,11 @@ where:
 
 - **completion date** is _mandatory_ and can be written as:
 
-  - _\<day>/\<month>_, assuming the year is the current one
+  - **\<day>/\<month>**, assuming the year is the current one
 
-  - _\<day>/\<month>/\<year>_, which is the most complete format
+  - **\<day>/\<month>/\<year>**, which is the most complete format
+
+  - **\*** - meaning that the work has _no completion date_ yet - because it's _in progress_
 
 - **title** is _optional_ but, if present, _must_ be enclosed in double quotes
 
@@ -56,7 +58,7 @@ where:
 
   where **hours** and **minutes** are **mandatory**, arbitrary numbers (even 0), separated by the letter **h**
 
-Overall, the line format is quite flexible... what matters is that - with or without the aid of the URL - the line enables Ulysses to gather enough information to create an OmniCourse descriptor - that is, the **title** and the **learning time in minutes**, with the additional constraint of the **completion date**.
+What matters is that - with or without the aid of the URL - the line enables Ulysses to gather enough information to create an OmniCourse work descriptor - that is, the **title** and the **learning time in minutes**, with the additional constraint of the **completion date**.
 
 ### Examples
 
