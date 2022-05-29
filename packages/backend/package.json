@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/ulysses",
-  "version": "2.0.4",
+  "version": "2.0.4-rc.1",
   "description": "Simplified generation of OmniCourse descriptors",
   "bin": {
     "ulysses": "dist/bin/ulysses.js"
@@ -10,13 +10,12 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "wait-for-frontend": "wait-on http://localhost:3000/",
     "start": "yarn wait-for-frontend && cross-env DEBUG=server,server:* NODE_ENV=development nodemon",
+    "wait-for-frontend": "wait-on http://localhost:3000/",
+    "check-all": "yarn test",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "build": "yarn test && tsc",
-    "prepack": "yarn build",
-    "deploy": "yarn publish --non-interactive"
+    "test:watch": "yarn test --watch",
+    "build": "tsc"
   },
   "author": {
     "name": "Gianluca Costa",

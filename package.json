@@ -14,11 +14,12 @@
     "backend": "yarn workspace @giancosta86/ulysses",
     "clean": "yarn frontend clean && yarn backend clean",
     "start": "concurrently \"yarn frontend start\" \"yarn backend start\"",
-    "test": "yarn frontend test && yarn backend test",
-    "test:watch": "concurrently \"yarn frontend test:watch\" \"yarn backend test:watch\"",
+    "check-all": "yarn check-format && yarn test",
+    "check-format": "prettier --check .",
+    "test": "yarn backend test",
     "build": "yarn frontend build && yarn backend build",
     "start-prod": "node packages/backend/dist/bin/ulysses.js",
-    "deploy": "yarn backend deploy"
+    "deploy": "yarn check-all && yarn build && yarn backend publish --non-interactive"
   },
   "author": {
     "name": "Gianluca Costa",
