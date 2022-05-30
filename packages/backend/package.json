@@ -11,7 +11,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "yarn wait-for-frontend && cross-env DEBUG=server,server:* NODE_ENV=development nodemon",
-    "wait-for-frontend": "wait-on http://localhost:3000/",
+    "wait-for-frontend": "wait-on --delay 3000 --interval 1000 http://localhost:3000/",
     "check-all": "yarn test",
     "test": "jest",
     "test:watch": "yarn test --watch",
