@@ -51,7 +51,8 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, "../backend/dist/public"),
-    filename: "[name].bundle.js"
+    filename: "[name].bundle.js",
+    hashFunction: "xxhash64"
   },
 
   plugins: [
