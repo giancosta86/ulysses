@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/ulysses",
-  "version": "2.1.0-rc.2",
+  "version": "2.1.0",
   "description": "Simplified generation of OmniCourse descriptors",
   "bin": {
     "ulysses": "dist/bin/ulysses.js"
