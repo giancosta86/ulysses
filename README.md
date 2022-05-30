@@ -8,7 +8,7 @@ _Simplified generation of OmniCourse descriptors_
 
 More precisely, the user can input lines using _a compact format_ - **one line per work** - and the app will try to fetch the missing information from the supported official websites.
 
-> Ulysses becomes essential as one completes more and more courses and books while keeping track of them with OmniCourse.
+> Ulysses becomes essential as one completes more and more works while keeping track of them with OmniCourse.
 
 ## Installation
 
@@ -36,7 +36,7 @@ Ulysses reads a minimalist log of **works**: each non-empty line must adhere to 
 
 This is the expected line format:
 
-> **\<completion date>**: [**"\<title between double quotes>"**] [**\<url not between double quotes>**] **\#\<learning time>**
+> **\<completion date\>**: \[**"\<title between double quotes\>"**\] \[**\<url not between double quotes\>**\] \[**!**"\<kind\>"\] **\#\<learning time\>**
 
 where:
 
@@ -52,6 +52,8 @@ where:
 
 - **url** is _optional_ but recommended: if the URL belongs to a supported didactic provider, it is used to fetch missing information such as the title and the learning time. It must _not_ be enclosed in quotes
 
+- **kind** is an arbitrary string, between double quotes
+
 - **learning time** is optional but, if declared, must be prefixed by a **\#** symbol. Its overall format is:
 
   > \#\<hours>h\<minutes>
@@ -65,18 +67,23 @@ What matters is that - with or without the aid of the URL - the line enables Uly
 To see Ulysses in action, you could input the following text, then click **Run**:
 
 ```
-// Ulysses supports a variety of didactic portals: in this case, the title and the learning time of each course are automatically fetched from its page
-29/4: https://www.ted.com/talks/chris_anderson_ted_s_secret_to_great_public_speaking
+// Ulysses supports a variety of didactic portals: in this case,
+// the title and the learning time of each work are automatically fetched from its page
 18/5: https://www.pluralsight.com/courses/cryptography-big-picture
-23/6: https://www.packtpub.com/product/introduction-to-unity-video/9781789807653
+23/6: https://www.packtpub.com/product/hands-on-data-structures-and-algorithms-in-rust-video/9781839211942
+29/4: https://www.ted.com/talks/chris_anderson_ted_s_secret_to_great_public_speaking !"Talk"
 
-// If a work does not belong to a supported didactic portal, both its title and the learning time are mandatory elements; the URL, in this case, becomes optional
+// If a work does not belong to a supported didactic portal,
+//both its title and the learning time are mandatory elements.
+//The URL, in this case, becomes optional
 24/8: "Introduction to Redux with TypeScript" https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript #3h30
 
 // Works not having a URL are supported as well
 17/9: "Philosophy - A very ancient book" #20h0
 
-// There are also hybrid cases: for example, the URL of a book published onto a didactic portal enables the app to fetch its title, but the learning time remains a mandatory element
+// There are also hybrid cases: for example, the URL of a book published
+// onto a didactic portal enables the app to fetch its title,
+//but the learning time remains a mandatory element
 21/10: https://www.packtpub.com/product/c-9-and-net-5-modern-cross-platform-development-fifth-edition/9781800568105 #11h30
 ```
 

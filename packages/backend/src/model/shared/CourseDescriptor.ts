@@ -3,6 +3,7 @@ export interface CourseDescriptor {
   minutes: number;
   url?: string;
   portal?: string;
+  kind?: string;
   completionDate?: string;
   certificateUrl?: string;
 }

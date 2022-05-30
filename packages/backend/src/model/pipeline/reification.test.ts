@@ -10,7 +10,8 @@ describe("Reification of a CourseDescriptor", () => {
       portal: "The portal",
       completionDate: "2020-04-29",
       certificateUrl:
-        "https://www.pluralsight.com/courses/cryptography-big-picture/certificate"
+        "https://www.pluralsight.com/courses/cryptography-big-picture/certificate",
+      kind: "Book"
     };
 
     const courseDescriptor = reifyCourseDescriptor(partialDescriptor);

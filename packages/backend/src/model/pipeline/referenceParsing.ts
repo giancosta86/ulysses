@@ -1,11 +1,12 @@
 const referenceLineRegex =
-  /(?:(?:(?<day>\d{1,2})\s*\/\s*(?<month>\d{1,2})(?:\/(?<year>\d{4}))?)|(?<in_progress>\*))\s*:\s*(?:"(?<title>[^"]+)"(?:\s+|$))?(?:(?<url>[^#\s]+)(?:\s+|$))?(?:#(?<hours>\d+)h(?<minutes>\d+))?/;
+  /(?:(?:(?<day>\d{1,2})\s*\/\s*(?<month>\d{1,2})(?:\/(?<year>\d{4}))?)|(?<in_progress>\*))\s*:\s*(?:"(?<title>[^"]+)"(?:\s+|$))?(?:(?<url>[^!#\s]+)(?:\s+|$))?(?:!"(?<kind>[^"]+)"(?:\s+|$))?(?:#(?<hours>\d+)h(?<minutes>\d+))?/;
 
 export interface CourseReference {
   completionDate?: string;
   title?: string;
   url?: string;
   minutes?: number;
+  kind?: string;
 }
 
 export class CourseReferenceParsingError extends Error {
@@ -42,6 +43,7 @@ export function parseCourseReference(line: string): CourseReference | null {
     completionDate: isoDate,
     title,
     url,
+    kind: match.groups.kind,
     minutes: !isNaN(totalMinutes) ? totalMinutes : undefined
   };
 }

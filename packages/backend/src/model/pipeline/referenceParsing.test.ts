@@ -18,6 +18,20 @@ describe("Parsing course references", () => {
     expect(actualReference).toEqual(expectedReference);
   });
 
+  it("should parse a reference having just one-digit day and month, plus url and kind", () => {
+    const actualReference = parseCourseReference(
+      '8/9: https://www.pluralsight.com/courses/cryptography-big-picture !"Course"'
+    );
+
+    const expectedReference: CourseReference = {
+      completionDate: `${new Date().getFullYear()}-09-08`,
+      url: "https://www.pluralsight.com/courses/cryptography-big-picture",
+      kind: "Course"
+    };
+
+    expect(actualReference).toEqual(expectedReference);
+  });
+
   it("should parse a reference having just mixed-length-digit day and month, plus url", () => {
     const actualReference = parseCourseReference(
       "4/10: https://www.pluralsight.com/courses/c-sharp-design-patterns-data-access-patterns"
@@ -70,6 +84,21 @@ describe("Parsing course references", () => {
     expect(actualReference).toEqual(expectedReference);
   });
 
+  it("should parse a reference having date, title, url and kind", () => {
+    const actualReference = parseCourseReference(
+      '23/10: "Introduction to Redux with TypeScript" https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript !"Course"'
+    );
+
+    const expectedReference: CourseReference = {
+      title: "Introduction to Redux with TypeScript",
+      completionDate: `${new Date().getFullYear()}-10-23`,
+      url: "https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript",
+      kind: "Course"
+    };
+
+    expect(actualReference).toEqual(expectedReference);
+  });
+
   it("should parse a reference having date, title, url and learning time", () => {
     const actualReference = parseCourseReference(
       '23/10: "Introduction to Redux with TypeScript" https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript #25h30'
@@ -85,6 +114,22 @@ describe("Parsing course references", () => {
     expect(actualReference).toEqual(expectedReference);
   });
 
+  it("should parse a reference having date, title, url, kind and learning time", () => {
+    const actualReference = parseCourseReference(
+      '23/10: "Introduction to Redux with TypeScript" https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript !"Slides" #25h30'
+    );
+
+    const expectedReference: CourseReference = {
+      title: "Introduction to Redux with TypeScript",
+      completionDate: `${new Date().getFullYear()}-10-23`,
+      url: "https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript",
+      minutes: 25 * 60 + 30,
+      kind: "Slides"
+    };
+
+    expect(actualReference).toEqual(expectedReference);
+  });
+
   it("should parse an in-progress reference having title, url and learning time", () => {
     const actualReference = parseCourseReference(
       '*: "Introduction to Redux with TypeScript" https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript #25h30'
@@ -94,6 +139,21 @@ describe("Parsing course references", () => {
       title: "Introduction to Redux with TypeScript",
       url: "https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript",
       minutes: 25 * 60 + 30
+    };
+
+    expect(actualReference).toEqual(expectedReference);
+  });
+
+  it("should parse an in-progress reference having title, url, kind and learning time", () => {
+    const actualReference = parseCourseReference(
+      '*: "Introduction to Redux with TypeScript" https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript !"Slides" #25h30'
+    );
+
+    const expectedReference: CourseReference = {
+      title: "Introduction to Redux with TypeScript",
+      url: "https://speakerdeck.com/giancosta86/introduction-to-redux-with-typescript",
+      minutes: 25 * 60 + 30,
+      kind: "Slides"
     };
 
     expect(actualReference).toEqual(expectedReference);
