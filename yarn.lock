@@ -297,6 +297,11 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
+"@giancosta86/typed-env@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@giancosta86/typed-env/-/typed-env-1.0.0.tgz#092034b82bab4591bd0df35d4aa31728d253413e"
+  integrity sha512-raHCYSOup2n7MB+3GxfqGu/n0kgfZ6IJYGipMQyFK0vAHJ7JbLbR3OCBNaO0YAuWhhRRmyYp15Rvb/1mQ38IUg==
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"

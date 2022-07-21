@@ -2,9 +2,9 @@
 import process from "process";
 import open from "open";
 import { startBackend } from "../server";
+import { nodeEnv } from "@giancosta86/typed-env";
 
-const inProduction =
-  !process.env.NODE_ENV || process.env.NODE_ENV === "production";
+const inProduction = nodeEnv.inProduction.getValue(() => true);
 
 const args = process.argv.slice(2);
 
