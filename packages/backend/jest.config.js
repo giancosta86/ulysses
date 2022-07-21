@@ -1,5 +1,7 @@
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "node",
-  testRegex: "\\.test\\.tsx?$"
+  transform: {
+    "^.+\\.(t|j)sx?$": ["@swc/jest"]
+  },
+
+  testPathIgnorePatterns: ["<rootDir>/dist/"]
 };

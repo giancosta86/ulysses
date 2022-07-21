@@ -11,12 +11,23 @@ module.exports = merge(common, {
 
   devtool: "inline-source-map",
 
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /\/node_modules\//,
+        use: "swc-loader"
+      }
+    ]
+  },
+
   devServer: {
+    client: {
+      overlay: true
+    },
+
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, "../backend/dist/public"),
     open: false,
-    compress: false,
-    hot: true,
     port: 3000
   },
 
