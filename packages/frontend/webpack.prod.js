@@ -1,7 +1,7 @@
+const { resolve } = require("node:path");
 const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
-
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
   mode: "production",
@@ -19,6 +19,12 @@ module.exports = merge(common, {
   devtool: "source-map",
 
   plugins: [new CleanWebpackPlugin()],
+
+  output: {
+    path: resolve(__dirname, "../backend/dist/frontend"),
+    filename: "[name].bundle.js",
+    hashFunction: "xxhash64"
+  },
 
   optimization: {
     usedExports: false

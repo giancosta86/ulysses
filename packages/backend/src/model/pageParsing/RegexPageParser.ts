@@ -6,7 +6,7 @@ function extractSingleGroup(regex: RegExp, source: string): string | null {
     return null;
   }
 
-  return match[1];
+  return match[1] ?? null;
 }
 
 export abstract class RegexPageParser extends MultipartPageParser {
@@ -23,9 +23,9 @@ export abstract class RegexPageParser extends MultipartPageParser {
       return null;
     }
 
-    const hours = parseFloat(match.groups.hours ?? "0");
-    const minutes = parseInt(match.groups.minutes ?? "0");
-    const seconds = parseInt(match.groups.seconds ?? "0");
+    const hours = parseFloat(match.groups["hours"] ?? "0");
+    const minutes = parseInt(match.groups["minutes"] ?? "0");
+    const seconds = parseInt(match.groups["seconds"] ?? "0");
 
     const totalMinutes = hours * 60 + minutes + seconds / 60;
 

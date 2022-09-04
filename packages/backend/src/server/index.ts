@@ -2,7 +2,6 @@ import express from "express";
 import path from "path";
 import debug from "debug";
 import http from "http";
-
 import { setupWebSocket } from "./websocket";
 import { BACKEND_PORT_PARAM } from "./shared";
 
@@ -16,12 +15,12 @@ export function startBackend(
   const app = express();
 
   if (inProduction) {
-    const staticFilesDir = path.join(__dirname, "../public");
+    const staticFilesDir = path.join(__dirname, "../frontend");
     app.use(express.static(staticFilesDir));
   } else {
     const FRONTEND_SERVER_PORT = 3000;
 
-    app.get("/", (req, res) => {
+    app.get("/", (_req, res) => {
       res.redirect(
         `http://localhost:${FRONTEND_SERVER_PORT}/?${BACKEND_PORT_PARAM}=${port}`
       );

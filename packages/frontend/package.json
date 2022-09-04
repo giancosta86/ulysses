@@ -1,22 +1,11 @@
 {
   "name": "@giancosta86/ulysses-frontend",
-  "version": "1.0.1",
-  "private": true,
-  "description": "Frontend project",
+  "version": "1.1.0",
   "scripts": {
-    "clean": "rimraf ../backend/dist/public",
+    "clean": "rimraf ../backend/dist/frontend",
+    "clean:all": "yarn clean && rimraf node_modules",
     "start": "webpack serve --config=webpack.dev.js",
     "build": "webpack --config=webpack.prod.js"
-  },
-  "author": {
-    "name": "Gianluca Costa",
-    "url": "https://gianlucacosta.info/",
-    "email": "gianluca@gianlucacosta.info"
-  },
-  "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/giancosta86/ulysses.git"
   },
   "dependencies": {
     "comlink": "^4.3.0",
@@ -47,5 +36,6 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.3",
     "webpack-merge": "^5.8.0"
-  }
+  },
+  "private": true
 }

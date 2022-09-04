@@ -1,8 +1,8 @@
 node_modules/
 
-coverage/
+/packages/*/coverage/
 
-dist/
+packages/*/dist/
 
 npm-debug.log*
 yarn-debug.log*

@@ -1,20 +1,20 @@
 #!/usr/bin/env node
-import process from "process";
+import process from "node:process";
 import open from "open";
+import { isInProduction } from "@giancosta86/typed-env";
 import { startBackend } from "../server";
-import { nodeEnv } from "@giancosta86/typed-env";
 
-const inProduction = nodeEnv.inProduction.getValue(() => true);
+const inProduction = isInProduction(true);
 
 const args = process.argv.slice(2);
 
 const DEFAULT_BACKEND_PORT = 2000;
-const port = parseInt(args[0]) || DEFAULT_BACKEND_PORT;
+const port = parseInt(args[0] ?? "") || DEFAULT_BACKEND_PORT;
 
 startBackend(inProduction, port, () => {
   const url = `http://localhost:${port}/`;
 
-  console.log(`Listening on url: ${url}`);
+  console.info(`Listening on url: ${url}`);
 
   open(url);
 });

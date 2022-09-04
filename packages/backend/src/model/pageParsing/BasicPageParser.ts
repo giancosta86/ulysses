@@ -1,6 +1,6 @@
+import fetch from "cross-fetch";
 import { CourseDescriptor } from "../shared/CourseDescriptor";
 import { PageParser } from "./PageParser";
-import fetch from "cross-fetch";
 
 export abstract class BasicPageParser implements PageParser {
   private readonly acceptedHosts: readonly string[];

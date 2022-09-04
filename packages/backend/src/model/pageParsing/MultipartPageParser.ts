@@ -19,12 +19,12 @@ export abstract class MultipartPageParser extends BasicPageParser {
         parsedResult.minutes = minutes;
       }
 
-      const portal = this.getPortal(pageText);
+      const portal = this.getPortal();
       if (portal) {
         parsedResult.portal = he.decode(portal.trim());
       }
 
-      const certificateUrl = this.getCertificateUrl(pageText);
+      const certificateUrl = this.getCertificateUrl();
       if (certificateUrl) {
         parsedResult.certificateUrl = certificateUrl.trim();
       }
@@ -42,11 +42,11 @@ export abstract class MultipartPageParser extends BasicPageParser {
 
   protected abstract getMinutes(pageText: string): number | null;
 
-  protected getPortal(pageText: string): string | null {
+  protected getPortal(): string | null {
     return null;
   }
 
-  protected getCertificateUrl(pageText: string): string | null {
+  protected getCertificateUrl(): string | null {
     return null;
   }
 

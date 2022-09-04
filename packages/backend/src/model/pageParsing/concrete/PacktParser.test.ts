@@ -69,8 +69,9 @@ describe("Packt parser", () => {
     );
 
     expect(actualParsingResult).toEqual({
-      title: "A Quick Introduction to JavaScript JSON",
-      minutes: 60,
+      title:
+        "Create Dynamic and Interactive Web Content Using AJAX and JSON in JavaScript",
+      minutes: 322,
       url: "https://www.packtpub.com/product/a-quick-introduction-to-javascript-json-video/9781800569027"
     });
   });

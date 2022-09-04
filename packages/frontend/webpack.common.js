@@ -1,5 +1,4 @@
-const path = require("path");
-
+const { resolve } = require("node:path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
@@ -40,20 +39,14 @@ module.exports = {
   },
 
   entry: {
-    main: path.resolve(__dirname, "src/index.tsx")
-  },
-
-  output: {
-    path: path.resolve(__dirname, "../backend/dist/public"),
-    filename: "[name].bundle.js",
-    hashFunction: "xxhash64"
+    main: resolve(__dirname, "src/index.tsx")
   },
 
   plugins: [
     new HtmlWebpackPlugin({
       title: "Ulysses for Omnicourse",
       filename: "index.html",
-      favicon: path.resolve(__dirname, "src/images/favicon.ico")
+      favicon: resolve(__dirname, "src/images/favicon.ico")
     })
   ]
 };

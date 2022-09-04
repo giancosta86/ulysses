@@ -9,7 +9,7 @@ export class CompositePageParser implements PageParser {
   }
 
   async parse(url: URL): Promise<Partial<CourseDescriptor> | null> {
-    for (let subParser of this.subParsers) {
+    for (const subParser of this.subParsers) {
       const subResult = await subParser.parse(url);
       if (subResult) {
         return subResult;

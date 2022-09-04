@@ -12,10 +12,22 @@ More precisely, the user can input lines using _a compact format_ - **one line p
 
 ## Installation
 
-To install Ulysses:
+To install Ulysses, you should install it as a **global package**:
 
 ```bash
 npm install --global @giancosta86/ulysses
+```
+
+or
+
+```bash
+yarn global add @giancosta86/ulysses
+```
+
+Additionally, please ensure that the directory used by your package manager to install binary scripts is in your PATH environment variable; in the case of Yarn, such directory is provided by the command:
+
+```bash
+yarn global bin
 ```
 
 Then, to start the app:

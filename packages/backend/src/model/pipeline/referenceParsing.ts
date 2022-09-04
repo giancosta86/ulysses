@@ -32,34 +32,36 @@ export function parseCourseReference(line: string): CourseReference | null {
 
   const isoDate = parseIsoDate(match.groups);
 
-  const url = match.groups.url;
-  const title = match.groups.title;
+  const url = match.groups["url"];
+  const title = match.groups["title"];
 
-  const hours = parseInt(match.groups.hours);
-  const minutes = parseInt(match.groups.minutes);
+  const hours = parseInt(match.groups["hours"] ?? "");
+  const minutes = parseInt(match.groups["minutes"] ?? "");
   const totalMinutes = hours * 60 + minutes;
 
   return {
     completionDate: isoDate,
     title,
     url,
-    kind: match.groups.kind,
+    kind: match.groups["kind"],
     minutes: !isNaN(totalMinutes) ? totalMinutes : undefined
   };
 }
 
 function parseIsoDate(groups: { [key: string]: string }): string | undefined {
-  if (groups.in_progress) {
+  if (groups["in_progress"]) {
     return;
   }
 
-  const day = parseInt(groups.day);
+  const day = parseInt(groups["day"] ?? "");
   const formattedDay = day.toString().padStart(2, "0");
 
-  const month = parseInt(groups.month);
+  const month = parseInt(groups["month"] ?? "");
   const formattedMonth = month.toString().padStart(2, "0");
 
-  const year = groups.year ? parseInt(groups.year) : new Date().getFullYear();
+  const year = groups["year"]
+    ? parseInt(groups["year"])
+    : new Date().getFullYear();
 
   const isoDate = `${year}-${formattedMonth}-${formattedDay}`;
 

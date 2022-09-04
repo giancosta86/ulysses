@@ -1,49 +1,47 @@
 {
   "name": "@giancosta86/ulysses",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "Simplified generation of OmniCourse descriptors",
-  "bin": {
-    "ulysses": "dist/bin/ulysses.js"
-  },
-  "files": [
-    "dist/"
-  ],
-  "engines": {
-    "node": ">=17.1.0"
-  },
-  "scripts": {
-    "clean": "rimraf dist giancosta86-*.tgz",
-    "start": "yarn wait-for-frontend && cross-env DEBUG=server,server:* NODE_ENV=development nodemon",
-    "wait-for-frontend": "wait-on --delay 3000 --interval 1000 http://localhost:3000/",
-    "check-all": "yarn test",
-    "test": "jest",
-    "test:watch": "yarn test --watch",
-    "build": "tsc"
-  },
-  "author": {
-    "name": "Gianluca Costa",
-    "url": "https://gianlucacosta.info/",
-    "email": "gianluca@gianlucacosta.info"
-  },
-  "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/giancosta86/ulysses.git"
-  },
-  "homepage": "https://github.com/giancosta86/ulysses#readme",
-  "bugs": {
-    "url": "https://github.com/giancosta86/ulysses/issues"
-  },
   "keywords": [
     "OmniCourse",
     "descriptors",
     "automated",
     "simplified",
     "generation",
-    "app"
+    "web app"
   ],
+  "homepage": "https://github.com/giancosta86/ulysses#readme",
+  "bugs": "https://github.com/giancosta86/ulysses/issues",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Gianluca Costa",
+    "email": "gianluca@gianlucacosta.info",
+    "url": "https://gianlucacosta.info/"
+  },
+  "files": [
+    "dist/"
+  ],
+  "bin": {
+    "ulysses": "dist/bin/ulysses.js"
+  },
+  "repository": "giancosta86/ulysses",
+  "scripts": {
+    "clean": "rimraf dist coverage giancosta86-*.tgz",
+    "clean:all": "yarn clean && rimraf node_modules",
+    "start": "yarn wait-for-frontend && nodemon",
+    "wait-for-frontend": "wait-on --delay 3000 --interval 1000 http://localhost:3000/",
+    "check-all": "yarn test",
+    "test": "jest",
+    "test:watch": "yarn test --watch",
+    "test:coverage": "yarn test --coverage",
+    "build": "yarn compile-ts",
+    "compile-ts": "tsc",
+    "test:prod": "jest dist --testPathIgnorePatterns=/_.+",
+    "start:prod": "node dist/bin/ulysses.js",
+    "prepack": "yarn build && yarn test:prod"
+  },
   "dependencies": {
-    "@giancosta86/typed-env": "^1.0.0",
+    "@giancosta86/typed-env": "^2.0.2",
     "cross-fetch": "^3.0.6",
     "debug": "^4.2.0",
     "express": "^4.17.1",
@@ -58,6 +56,7 @@
     "@types/express": "^4.17.9",
     "@types/he": "^1.1.1",
     "@types/jest": "^28.1.6",
+    "@types/node": "^17",
     "@types/socket.io": "^2.1.11",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
@@ -69,6 +68,9 @@
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4",
     "wait-on": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=17.1.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,15 +1,13 @@
 import http from "http";
 import debug from "debug";
-
+import { Server, Socket } from "socket.io";
 import {
   GET_COURSE_DESCRIPTOR,
   COURSE_DESCRIPTOR,
   LINE_ERROR,
   END
 } from "./shared/socketEvents";
-
 import { getCourseDescriptor } from "../model/pipeline";
-import { Server, Socket } from "socket.io";
 import { GalleryPageParser } from "../model/pageParsing/GalleryPageParser";
 
 const log = debug("server:socket");

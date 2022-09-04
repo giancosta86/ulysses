@@ -34,7 +34,7 @@ export async function getDescriptors(
 
     let processedLinesCount = 0;
 
-    for (let line of actualInputLines) {
+    for (const line of actualInputLines) {
       if (canceled) {
         break;
       }
