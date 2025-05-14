@@ -10,6 +10,6 @@ export class PluralsightParser extends RegexPageParser {
   }
 
   protected getDurationRegex(): RegExp {
-    return /<meta\s+name="duration"\s+content\s*=\s*"PT(?:(?<hours>\d+)H)?(?:(?<minutes>\d+)M)?/;
+    return /<meta\s+name="duration"\s+content\s*=\s*"(?:PT)?(?:(?<hours>\d+)H)?\s*(?:(?<minutes>\d+)M)?/i;
   }
 }
